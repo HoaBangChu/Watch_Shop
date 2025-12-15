@@ -1,0 +1,88 @@
+html,body{
+    padding: 0;
+    margin: 0;
+    
+}
+.container {
+    background-image: url("../images/b_login.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.box{
+    width: 30%;
+    height: 330px;
+    border: 1px solid white; 
+border-radius: 5px;
+text-align: center;
+color: white;
+position: relative;
+filter: drop-shadow(5px 5px 10px white);
+}
+
+.user ,.password{
+    width: 100%;
+}
+.user label,.password label{
+    display: inline-block;
+    margin-bottom: 5%;
+    text-align: start;
+    width: 100px;
+}
+.user input, .password input{
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+}
+.btn{
+    padding: 10px 15px;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+.reg1{
+    background: green;
+}
+.lg1{
+       background: orange;
+
+}
+.lg{
+    background: orange;
+    position: absolute;
+   bottom: 5%;
+   left: 5%;
+}
+.re-log{
+   display: inline;
+   padding: 5px 15px;
+   border-radius: 5px;
+   
+}
+.re-log a{
+   text-decoration: none;
+   color: white;
+   padding: 5px 15px;
+}
+.reg{
+    background: green;
+    position: absolute;
+   bottom: 5%;
+   right: 5%;
+}
+.remember{
+    width:54%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.remember input {
+    width: 20px;
+    height: 25px;
+    
+}

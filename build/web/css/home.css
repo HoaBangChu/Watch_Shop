@@ -1,0 +1,110 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.container{
+    background: linear-gradient(0deg, #000000, #bf8b16);
+    /*background: linear-gradient(180deg, #fffcf5, #d8d5ca);*/
+    /*background: #d0b580;*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+/*.header*/
+.header{
+    display:flex;
+    justify-content: space-between;
+    margin: 0 3%;
+    padding-top: 1%;
+}
+.header img{
+    width: 5%;
+    border-radius: 50%;
+}
+.logo{
+    display:flex;
+    align-items: center;
+    gap: 1%;
+    color: white;
+}
+
+.login{
+    width: 7%;
+    display:flex;
+    align-items: center;
+    margin-right: 3%;
+}
+#login,#avarta{
+    background: linear-gradient(0deg, #000000, #bf8b16);
+    padding: 15px 15px;
+    color: white;
+    text-decoration: none;
+}
+#avarta{
+    border-radius: 100%;
+        margin-right: 10%;
+
+}
+#login{
+    margin-left: 10%;
+    border-radius: 15% 15%;
+}
+
+/*nav*/
+.menu{
+    border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        margin-top: 1%;
+}
+.nav{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.nav li{
+    list-style-type: none;
+    margin: 0 3%;
+}
+.nav a{
+    color: white;
+    text-decoration: none;
+}
+/*footer.*/
+.footer{
+     display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+   border-top: 1px solid white;
+   border-bottom: 1px solid white;
+}
+.footer i{
+    margin-right: 3%;
+}
+.footer .f1,.f0{
+    width: 20%;
+   }
+ 
+ .frame_content {
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     align-items: center;
+     width: 90%;
+     border: 1px solid white;
+     border-radius: 5px;
+     margin-top: 2%;
+     min-height: 300px;
+ }
+ .frame_content h2{
+     text-align: center;
+     color: white;
+     width: 100%;
+ }
+ 
+ 
