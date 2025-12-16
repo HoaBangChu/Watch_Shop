@@ -77,11 +77,11 @@ public class Register extends HttpServlet {
        // tạo dao login
        DAO_Login daoLogin = new DAO_Login();
        // lấy xong rồi thì kiểm tra xem nó có trong csdl chưa
-       if(daoLogin.findUser(user) != null) {
+       if(daoLogin.findUser(user,1) != null) {
            request.setAttribute("err_register","Tài khoản đã tồn tại!");
            request.getRequestDispatcher("/Login/register.jsp").forward(request, response);     
        }else{
-           daoLogin.insertAccount(user, password);
+           daoLogin.insertAccount(user, password,1);
            request.setAttribute("suss_register", "Đăng kí thành công!");
            request.getRequestDispatcher("/Login/register.jsp").forward(request, response);
        }

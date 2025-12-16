@@ -87,7 +87,7 @@ public class login extends HttpServlet {
        // tạo session
        HttpSession session = request.getSession();
        // lấy xong rồi thì kiểm tra xem nó có trong csdl chưa
-       User u = daoLogin.checkLogin(user, password);
+       User u = daoLogin.checkLogin(user, password,1);
        if(u == null) {
            request.setAttribute("err_login","Tài khoản mật khẩu không chính xác!");
            request.getRequestDispatcher("/Login/login.jsp").forward(request, response);     
@@ -116,7 +116,7 @@ public class login extends HttpServlet {
        if(remember != null) {
            cUser.setMaxAge(60*60);
            cToken.setMaxAge(60*60);
-           daoLogin.updateToken(user, token);
+           daoLogin.updateToken(user, token,"[User]");
        }else{
            cUser.setMaxAge(0); // nếu logout và quay lại trang login mà ấn không remember thì không có cookies
            cToken.setMaxAge(0);

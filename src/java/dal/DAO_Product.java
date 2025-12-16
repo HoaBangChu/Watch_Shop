@@ -79,7 +79,8 @@ public class DAO_Product extends DBContext {
                 Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
                         rs.getDouble("price"), b, rs.getInt("movement_id"),
                         rs.getInt("strap_id"), rs.getString("image_url"), rs.getString("description"),
-                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"));
+                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"),
+                        rs.getString("username"));
                 list.add(watch);
             }
         } catch (Exception e) {
@@ -107,10 +108,11 @@ public class DAO_Product extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand b = this.getBrandById(rs.getInt("brand_id"));
-                Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
+               Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
                         rs.getDouble("price"), b, rs.getInt("movement_id"),
                         rs.getInt("strap_id"), rs.getString("image_url"), rs.getString("description"),
-                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"));
+                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"),
+                        rs.getString("username"));
                 list.add(watch);
             }
         } catch (Exception e) {
@@ -137,10 +139,11 @@ public class DAO_Product extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand b = this.getBrandById(rs.getInt("brand_id"));
-                Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
+               Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
                         rs.getDouble("price"), b, rs.getInt("movement_id"),
                         rs.getInt("strap_id"), rs.getString("image_url"), rs.getString("description"),
-                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"));
+                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"),
+                        rs.getString("username"));
                 list.add(watch);
             }
         } catch (Exception e) {
@@ -174,10 +177,11 @@ public class DAO_Product extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand b = this.getBrandById(rs.getInt("brand_id"));
-                Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
+               Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
                         rs.getDouble("price"), b, rs.getInt("movement_id"),
                         rs.getInt("strap_id"), rs.getString("image_url"), rs.getString("description"),
-                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"));
+                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"),
+                        rs.getString("username"));
                 list.add(watch);
             }
         } catch (Exception e) {
@@ -230,10 +234,11 @@ public class DAO_Product extends DBContext {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand b = this.getBrandById(rs.getInt("brand_id"));
-                Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
+               Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
                         rs.getDouble("price"), b, rs.getInt("movement_id"),
                         rs.getInt("strap_id"), rs.getString("image_url"), rs.getString("description"),
-                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"));
+                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"),
+                        rs.getString("username"));
                 list.add(watch);
             }
         } catch (Exception e) {

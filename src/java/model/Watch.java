@@ -13,11 +13,11 @@ public class Watch {
     private int quantity;
     private String new_product;
     private String gender;
+    private String username;
     public Watch() {
     }
 
-
-    public Watch(int watch_id, String product_name, double price, Brand brand, int movement_id, int strap_id, String image_url, String description, int quantity, String new_product, String gender) {
+    public Watch(int watch_id, String product_name, double price, Brand brand, int movement_id, int strap_id, String image_url, String description, int quantity, String new_product, String gender, String username) {
         this.watch_id = watch_id;
         this.product_name = product_name;
         this.price = price;
@@ -29,8 +29,8 @@ public class Watch {
         this.quantity = quantity;
         this.new_product = new_product;
         this.gender = gender;
+        this.username = username;
     }
-
     public int getWatch_id() {
         return watch_id;
     }
@@ -117,6 +117,14 @@ public class Watch {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     
 }

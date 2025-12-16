@@ -59,7 +59,7 @@ public class Logout extends HttpServlet {
         User user = (User) session.getAttribute("account");
         if(user != null) {        
             DAO_Login daoLogin = new DAO_Login();
-            daoLogin.deleteToken(user.getUsername()); // xóa thằng token trong database
+            daoLogin.deleteToken(user.getUsername(),"[User]"); // xóa thằng token trong database
         }
          // cookie như map có tính ghi đè nếu trùng key nên ta đè nên rồi set nó về 0 => xóa token ở brower
             Cookie cUser = new Cookie("cUser","");

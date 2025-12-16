@@ -13,7 +13,19 @@ html,body{
    justify-content: center;
    align-items: center;
 }
+.home {
 
+    position: absolute;
+    top: 3%;
+    left: 2%;
+}
+.home a{
+    padding: 10px 20px;
+    background: orange;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+}
 .box{
     width: 30%;
     height: 330px;
@@ -24,7 +36,9 @@ color: white;
 position: relative;
 filter: drop-shadow(5px 5px 10px white);
 }
-
+.box_regis_admin{
+    height: 250px;
+}
 .user ,.password{
     width: 100%;
 }

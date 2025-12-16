@@ -16,7 +16,7 @@
     <body>
         <div class="container">
             <div class="box">
-                <h2>LOGIN</h2>
+                <h2>Register</h2>
             <form action="register" method="post">
                 <div class="user">
                     <label>User</label>

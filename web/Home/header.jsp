@@ -19,7 +19,7 @@
             <h3>Phố Đồng Hồ</h3>
             </div>
             <div class="login">
-            <a href="#" id="avarta">X</a>
+            <a href="${pageContext.request.contextPath}/profile" id="avarta">X</a>
             <c:if test="${sessionScope.account != null}">
                 <a href="${pageContext.request.contextPath}/logout" id="login">Logout</a>           
             </c:if>
