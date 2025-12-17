@@ -17,6 +17,10 @@
         <h2>Sản phẩm</h2>
         <div class="best_seller">
             <c:set var="watch_list" value="${requestScope.watch_list}"/>
+             <c:if test="${empty watch_list}">
+                <h2>Không tìm thấy sản phẩm này!</h2>
+            </c:if>
+             <c:if test="${not empty watch_list}"> 
             <c:forEach items="${watch_list}" var="w">
                 <div class="best_product">
                     <img src="./images/${w.image_url}" alt="alt"/>
@@ -29,6 +33,8 @@
                     </div>
                 </div>
             </c:forEach>
+             </c:if>
         </div>
+            
     </body>
 </html>

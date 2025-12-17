@@ -87,7 +87,7 @@ public class login extends HttpServlet {
        // tạo session
        HttpSession session = request.getSession();
        // lấy xong rồi thì kiểm tra xem nó có trong csdl chưa
-       User u = daoLogin.checkLogin(user, password,1);
+       User u = daoLogin.checkLogin(user, password);
        if(u == null) {
            request.setAttribute("err_login","Tài khoản mật khẩu không chính xác!");
            request.getRequestDispatcher("/Login/login.jsp").forward(request, response);     

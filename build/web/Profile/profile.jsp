@@ -16,7 +16,7 @@
     <body>
         <div class="container">
             <div class="home">
-                <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+                <a href="javascript:history.back()">Quay lại</a>
             </div>
             <h2>Trang cá nhân</h2>
             <div class="frame_profile">

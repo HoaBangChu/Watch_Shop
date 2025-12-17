@@ -99,47 +99,42 @@ public class LoginFilter implements Filter {
      * @exception ServletException if a servlet error occurs
      */
     public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain chain)
-	throws IOException, ServletException {
+                     FilterChain chain)
+        throws IOException, ServletException {
 
-	if (debug) log("LoginFilter:doFilter()");
+    // 1. Ép kiểu và đặt tên biến chuẩn (req cho Request, resp cho Response)
+    HttpServletRequest req = (HttpServletRequest) request;
+    HttpServletResponse resp = (HttpServletResponse) response;
 
-	doBeforeProcessing(request, response);
-	// code here
-        HttpServletRequest res = (HttpServletRequest) request;
-        HttpServletResponse resp = (HttpServletResponse) response;
-        // lấy ra đường dẫn 
-        String refer = res.getHeader("referer");
-        // kiểm tra session trước xem đã đăng nhập chưa 
-        HttpSession session = res.getSession();
-        if(session.getAttribute("account") != null) {
-            resp.sendRedirect(refer);
-        }else{
-            resp.sendRedirect(res.getContextPath() + "/login");
-        }
-        //
-	Throwable problem = null;
-	try {
-	    chain.doFilter(request, response);
-	}
-	catch(Throwable t) {
-	    // If an exception is thrown somewhere down the filter chain,
-	    // we still want to execute our after processing, and then
-	    // rethrow the problem after that.
-	    problem = t;
-	    t.printStackTrace();
-	}
+    // 2. Lấy đường dẫn hiện tại user đang truy cập
+    String requestURI = req.getRequestURI();
+    String loginPage = req.getContextPath() + "/login";
 
-	doAfterProcessing(request, response);
+    // 3. Kiểm tra các điều kiện
+    HttpSession session = req.getSession(false); // Dùng false để không tự tạo session mới nếu chưa có
+    boolean loggedIn = (session != null && session.getAttribute("account") != null);
+    boolean isLoginRequest = requestURI.equals(loginPage);
+    // (Tùy chọn) Cho phép truy cập file tĩnh (css, js, ảnh) mà không cần login
+    boolean isHomePage = requestURI.equals(req.getContextPath() + "/home") || requestURI.equals(req.getContextPath() + "/"); // Thêm dòng này
+    boolean isShopPage = requestURI.equals(req.getContextPath() + "/shop") || requestURI.equals(req.getContextPath() + "/"); // Thêm dòng này
 
-	// If there was a problem, we want to rethrow it if it is
-	// a known type, otherwise log it.
-	if (problem != null) {
-	    if (problem instanceof ServletException) throw (ServletException)problem;
-	    if (problem instanceof IOException) throw (IOException)problem;
-	    sendProcessingError(problem, response);
-	}
+    boolean isResourceRequest = requestURI.matches(".*(css|js|png|jpg|jpeg).*");
+    boolean urlCheckJsp = requestURI.endsWith(".jsp");
+    if(urlCheckJsp) {
+        resp.sendRedirect(req.getContextPath() + "/home");
+        return;
     }
+    // 4. Logic chính
+    if (loggedIn || isLoginRequest || isResourceRequest || isHomePage || isShopPage) {
+        // Nếu đã đăng nhập HOẶC đang truy cập trang login HOẶC tài nguyên tĩnh
+        // => Cho qua
+        chain.doFilter(request, response);
+    } else {
+        // Chưa đăng nhập và đang cố vào trang nội bộ => Đá về login
+        resp.sendRedirect(loginPage);
+        return; // Quan trọng: Dừng code tại đây, không chạy tiếp phía dưới
+    }
+}
     
     /**
      * Return the filter configuration object for this filter.

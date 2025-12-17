@@ -17,6 +17,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -126,6 +127,11 @@ public class RememberFilter implements Filter {
                 if (c.getName().equals("cToken")) {
                     token = c.getValue();
                 }
+            }
+            HttpSession session = req.getSession();
+            if(session == null || session.getAttribute("account")==null){
+                chain.doFilter(request, response);
+                return;
             }
             if (user != null && token != null) {
                 if (isLogin) { // nếu mà có cookies rồi mà vẫn đòi vào login thì cho ông về home 

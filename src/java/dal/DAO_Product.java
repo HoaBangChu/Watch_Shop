@@ -160,20 +160,23 @@ public class DAO_Product extends DBContext {
     }
 
     // Tìm kiếm theo search
-    public List<Watch> getBySearch(String search) throws SQLException {
+    public List<Watch> getBySearch(String search,boolean isAdmin, String user) throws SQLException {
         String sql = "SELECT * FROM Watches WHERE 1=1";
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<Watch> list = new ArrayList();
         try {
+            int index = 1;
             if (search.equals("") == false && search != null) {
                 sql += " AND (product_name LIKE ? OR description LIKE ?)";
-                ps = connection.prepareStatement(sql);
-                ps.setString(1, "%" + search + "%");
-                ps.setString(2, "%" + search + "%");
-            } else {
-                ps = connection.prepareStatement(sql);
             }
+             if(isAdmin) sql += " AND username=?";
+            ps = connection.prepareStatement(sql);
+            if (search.equals("") == false && search != null) {
+                ps.setString(index++, "%" + search + "%");
+                ps.setString(index++, "%" + search + "%");
+            }
+            if(isAdmin) ps.setString(index++, user);    
             rs = ps.executeQuery();
             while (rs.next()) {
                 Brand b = this.getBrandById(rs.getInt("brand_id"));
@@ -198,7 +201,7 @@ public class DAO_Product extends DBContext {
     }
 
     // Tìm kiếm theo giá, dây, máy
-    public List<Watch> getByFilter(double priceFrom, double priceTo, String strap, String movement) throws SQLException {
+    public List<Watch> getByFilter(double priceFrom, double priceTo, String strap, String movement,boolean isAdmin,String user) throws SQLException {
         String sql = "select * from Watches w \n" +
 "	JOIN StrapMaterials s ON s.strap_id = w.strap_id\n" +
 "	JOIN MovementTypes m ON m.movement_id = w.movement_id\n" +
@@ -217,6 +220,8 @@ public class DAO_Product extends DBContext {
             if (priceFrom < priceTo) {
                 sql += " AND (price >= ? AND price <= ?)";
             }
+            if(isAdmin) sql += " AND username =?";
+
             // tạo ps
             ps = connection.prepareStatement(sql);
             int index = 1;
@@ -230,6 +235,7 @@ public class DAO_Product extends DBContext {
                 ps.setDouble(index++, priceFrom);
                 ps.setDouble(index++, priceTo);
             }
+            if(isAdmin) ps.setString(index++, user);
             // thực thi
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -252,5 +258,53 @@ public class DAO_Product extends DBContext {
             }
         }
         return list;
+    }
+    
+    // lấy tất cả sản phẩm bằng user name
+    public List<Watch> getProductAdmin(String user) throws SQLException {
+        String sql = "SELECT * FROM Watches WHERE username = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Watch> list = new ArrayList();
+        try {
+            ps=connection.prepareStatement(sql);
+            ps.setString(1, user);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                 Brand b = this.getBrandById(rs.getInt("brand_id"));
+               Watch watch = new Watch(rs.getInt("watch_id"), rs.getString("product_name"),
+                        rs.getDouble("price"), b, rs.getInt("movement_id"),
+                        rs.getInt("strap_id"), rs.getString("image_url"), rs.getString("description"),
+                        rs.getInt("quantity"), rs.getString("new_product"), rs.getString("gender"),
+                        rs.getString("username"));
+                list.add(watch);
+            }
+        } catch (Exception e) {
+        } finally {
+            if(ps != null) ps.close();
+            if(rs != null) rs.close();
+        }
+        return list;
+    }
+    
+    // XÓA SẢN PHẨM
+    public void deleteProductByAdmin(String product_name, String username) throws SQLException {
+        String sql = "DELETE FROM Watches WHERE product_name=? AND username=?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            int index = 1;
+            ps = connection.prepareStatement(sql);
+            if(username != null && product_name != null) {
+                ps.setString(index++, product_name);
+                ps.setString(index++, username);
+            }
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            if(ps!= null) ps.close();
+            if(rs!=null) rs.close();
+        }
     }
 }

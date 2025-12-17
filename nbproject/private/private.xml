@@ -3,16 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/css/login.css</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Login/register.jsp</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/controller/Register.java</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/controller/login.java</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Profile/profile.jsp</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/model/User.java</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Admin/register_admin.jsp</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/controller/admin/RegisterAdmin.java</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/dal/DAO_Login.java</file>
-            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/model/Watch.java</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Admin/profile.jsp</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/controller/shop/SearchProduct.java</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Shop/searchProduct.jsp</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Shop/shop.jsp</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/controller/admin/Admin_Shop.java</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/filter/LoginFilter.java</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Shop/product.jsp</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/css/content.css</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Admin_Shop/admin_product.jsp</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/controller/admin/DeleteProduct.java</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/css/shop.css</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/web/Admin_Shop/admin_shop.jsp</file>
+            <file>file:/C:/Users/DELL%20P5530/Pictures/PRJ301/Watch_Shop/src/java/dal/DAO_Product.java</file>
         </group>
     </open-files>
 </project-private>

@@ -89,15 +89,15 @@ public class DAO_Login extends DBContext{
     }
     
     // ĐĂNG NHẬP
-    public User checkLogin(String user, String password,int id) {
-        String sql = "SELECT * FROM [User] WHERE username=? AND password=? AND role_id=?";
+    public User checkLogin(String user, String password) {
+        String sql = "SELECT * FROM [User] WHERE username=? AND password=? ";
         try {
             int index = 1;
             PreparedStatement ps = connection.prepareStatement(sql);
             if(user != null && user.equals("") == false && password != null && password.equals("") == false){
                 ps.setString(index++, user);
                 ps.setString(index++, password);
-                ps.setInt(index++, id);
+                //ps.setInt(index++, id);
             }
             ResultSet res = ps.executeQuery();
             if(res.next()) {
@@ -112,7 +112,7 @@ public class DAO_Login extends DBContext{
     
     // update quyền admin
     public void updateAdminRole(String user) {
-        String sql = "UPDATE [User] SET role_id=? WHERE user=?";
+        String sql = "UPDATE [User] SET role_id=? WHERE username=?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, 2);

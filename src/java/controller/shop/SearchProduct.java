@@ -13,7 +13,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import model.User;
 import model.Watch;
 
 /**
@@ -75,6 +77,18 @@ public class SearchProduct extends HttpServlet {
         // kiểm tra xem người dùng nhấn lọc hay nhấn tìm kiếm
         String filter = request.getParameter("btnfilter");
         String search = request.getParameter("btnsearch");
+        // lấy ra tham số kiểm tra admin
+            String modeAdmin = request.getParameter("modeAdmin");
+            // lấy thằng user trên session xuống
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("account");
+            boolean isAdmin = false;
+            String username = null;
+            if(user != null) {
+             isAdmin = modeAdmin != null && user.getRole_id() ==2;
+             username = user.getUsername();
+            }
+            
         try {
             DAO_Product dao = new DAO_Product();
             List<Watch> watch_list = null;
@@ -83,26 +97,28 @@ public class SearchProduct extends HttpServlet {
                 String movement = request.getParameter("movement");
             String priceFrom_raw = request.getParameter("pricefrom");
             String priceTo_raw = request.getParameter("priceto");
+            
             double priceFrom = 0;
             double priceTo = 0;
                 try {
-                     priceFrom = Double.parseDouble(priceFrom_raw);
-                     priceTo = Double.parseDouble(priceTo_raw);
+                    priceFrom = Double.parseDouble(priceFrom_raw);
+                    priceTo = Double.parseDouble(priceTo_raw);
                 } catch (Exception e) {
                     request.setAttribute("error_price", "Vui lòng nhập giá tiền là số");
                 }
-                watch_list = dao.getByFilter(priceFrom, priceTo, strap, movement);
+                watch_list = dao.getByFilter(priceFrom, priceTo, strap, movement,isAdmin,username);
         }else if(filter == null && search != null) { // nhấn tìm kiếm thì lấy tham số thôi
             String search_text = request.getParameter("search");
-            watch_list = dao.getBySearch(search_text);
+            watch_list = dao.getBySearch(search_text,isAdmin,username);
         }    
-            request.setAttribute("watch_list", watch_list);
+            if(isAdmin) request.setAttribute("product_admin", watch_list);
+            else request.setAttribute("watch_list", watch_list);
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            request.getRequestDispatcher("/Shop/shop.jsp").forward(request, response);
+            if(isAdmin) request.getRequestDispatcher("/Admin_Shop/admin_shop.jsp").forward(request, response);
+            else request.getRequestDispatcher("/Shop/shop.jsp").forward(request, response);
         }
-        //
     }
 
     /** 

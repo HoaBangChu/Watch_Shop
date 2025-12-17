@@ -81,6 +81,7 @@ public class RegisterAdmin extends HttpServlet {
         if(dao.checkPhoneMail(email, phone)==false){
         User u = (User)request.getSession().getAttribute("account");
         dao.updateAdminRole(u.getUsername());
+        u.setRole_id(2);
         dao.updateInfoAdmin(email, phone, u.getUsername());
         // lưu vào session tránh gửi lại form
         session.setAttribute("suss_register", "Đăng kí thành công!");

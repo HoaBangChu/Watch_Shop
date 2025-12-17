@@ -84,3 +84,57 @@
         transform: translate(100%,0);
     }
 }
+
+/*// sửa và xóa*/
+#update_delete button{
+    padding: 5px 35px;
+    color: white;
+    border-radius: 5px;
+   border: 0;
+}
+#update_delete button:first-child {
+    background: green;
+}
+#update_delete button:nth-of-type(2) {
+    background: red;
+}
+
+/*.pop up xóa*/
+.popDelete {
+    width: 400px;
+    background: linear-gradient(0deg, #000001, #bf8b16);
+    height: 200px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 3%;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+    z-index: 99;
+}
+.openPopDelete{
+    top: 50%;
+   transform: translate(-50%,-50%) scale(1);
+   visibility: visible;
+}
+.popDelete button:first-of-type {
+    color: white;
+    background: green;
+}
+.popDelete button{
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.popDelete button:nth-of-type(2) {
+    color: white;
+    background: red;
+}

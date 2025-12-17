@@ -32,10 +32,10 @@
                 <button type="submit" class="btn reg1">Đăng kí</button>
             </form>
             <c:if test="${sessionScope.err_register != null}">
-                <h4 style="color: red">${requestScope.err_register}</h4>
+                <h4 style="color: red">${sessionScope.err_register}</h4>
             </c:if>
             <c:if test="${sessionScope.suss_register != null}">
-                <h4 style="color: green">${requestScope.suss_register}</h4>
+                <h4 style="color: green">${sessionScope.suss_register}</h4>
             </c:if>
                 </div>
         </div>
