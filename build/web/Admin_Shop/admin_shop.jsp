@@ -26,7 +26,8 @@
             </div>
             <div class="frame_content"> 
                 <div class="add_product">
-               <a href="#">+ Thêm sản phẩm</a>
+                    <a href="${pageContext.request.contextPath}/home">Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/addProduct">+ Thêm sản phẩm</a>
                </div>
                <jsp:include page="./searchProductAdmin.jsp"/>
                <jsp:include page="./admin_product.jsp"/>

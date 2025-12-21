@@ -28,6 +28,7 @@
     box-shadow: 3px 3px 5px gray;
     position: relative;
     margin-bottom: 2%;
+    position: relative;
 }
 .best_product:hover{
     transform: scale(1.05);
@@ -92,11 +93,19 @@
     border-radius: 5px;
    border: 0;
 }
+#update_delete{
+    position: absolute;
+    bottom: 3%;
+    left: 6%;
+}
 #update_delete button:first-child {
     background: green;
+    cursor: pointer;
 }
 #update_delete button:nth-of-type(2) {
     background: red;
+        cursor: pointer;
+
 }
 
 /*.pop up xóa*/
@@ -104,20 +113,20 @@
     width: 400px;
     background: linear-gradient(0deg, #000001, #bf8b16);
     height: 200px;
-    position: fixed;
+/*    position: fixed;
     top: 0;
     left: 50%;
-    transform: translate(-50%,-50%) scale(0.1);
+    transform: translate(-50%,-50%) scale(0.1);*/
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border-radius: 3%;
-    visibility: hidden;
+/*    visibility: hidden;
     transition: transform 0.4s, top 0.4s;
-    z-index: 99;
+    z-index: 99;*/
 }
-.openPopDelete{
+.popup.openPopDelete{
     top: 50%;
    transform: translate(-50%,-50%) scale(1);
    visibility: visible;
@@ -125,6 +134,7 @@
 .popDelete button:first-of-type {
     color: white;
     background: green;
+    cursor: pointer;
 }
 .popDelete button{
     width: 100px;
@@ -137,4 +147,76 @@
 .popDelete button:nth-of-type(2) {
     color: white;
     background: red;
+    cursor: pointer;
+}
+/*update*/
+.popUpdate {
+    width: 40%;
+    min-height: 500px;
+    background: linear-gradient(0deg, #000001, #bf8b16);
+    border: 5px solid white;
+    border-radius: 5%;
+    
+}
+.inUpdate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.inUpdate label {
+    display: inline-block;
+    width: 120px;
+    font-size: 1.1rem;
+    color: white;
+}
+.inUpdate input,select{
+    width: 300px;
+    height: 25px;
+}
+.inUpdate button{
+    width: 100px;
+    height: 25px;
+    color: white;
+    font-size: 1.1rem;
+    background: green;
+    border-radius: 5px;
+    border: 0;
+    margin: 5% 0;
+    cursor: pointer;
+}
+.popup {
+    position: fixed;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    z-index: 99;
+    transition: transform 0.4s, top 0.4s;
+    
+}
+#close {
+    position: absolute;
+    top: 2%;
+    right: 3%;
+}
+#close button {
+    width: 25px;
+    color: white;
+    background: red;
+    height: 25px;
+    cursor: pointer;
+}
+/*.over lay*/
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 98;
+    visibility: hidden;
+}
+
+#overlay.active {
+    visibility: visible;
 }

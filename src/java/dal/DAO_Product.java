@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.MovementTypes;
+import model.StrapMaterials;
 import model.Watch;
 
 public class DAO_Product extends DBContext {
@@ -288,15 +290,14 @@ public class DAO_Product extends DBContext {
     }
     
     // XÓA SẢN PHẨM
-    public void deleteProductByAdmin(String product_name, String username) throws SQLException {
-        String sql = "DELETE FROM Watches WHERE product_name=? AND username=?";
+    public void deleteProductByAdmin(int product_id, String username) throws SQLException {
+        String sql = "DELETE FROM Watches WHERE watch_id=? AND username=?";
         PreparedStatement ps = null;
-        ResultSet rs = null;
         try {
             int index = 1;
             ps = connection.prepareStatement(sql);
-            if(username != null && product_name != null) {
-                ps.setString(index++, product_name);
+            if(username != null) {
+                ps.setInt(index++, product_id);
                 ps.setString(index++, username);
             }
             ps.executeUpdate();
@@ -304,7 +305,105 @@ public class DAO_Product extends DBContext {
             System.out.println(e);
         } finally {
             if(ps!= null) ps.close();
-            if(rs!=null) rs.close();
         }
     }
+    // UPDATE SẢN PHẨM
+    public void updateProductByAdmin(int id,String p_name,double price,String images,int quantity,String new_product,String gender) throws SQLException {
+        String sql = "UPDATE Watches SET product_name=?,price=?,image_url=?,quantity=?,new_product=?,gender=?"
+                + " WHERE watch_id =?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            int index = 1;
+            ps = connection.prepareStatement(sql);
+            ps.setString(index++, p_name);
+            ps.setDouble(index++, price);
+//            ps.setString(index++, brand);
+            ps.setString(index++, images);
+            ps.setInt(index++, quantity);
+            ps.setString(index++, new_product);
+            ps.setString(index++, gender);
+            ps.setInt(index++, id);
+            // 
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally { 
+            if(ps != null) ps.close();
+            if(rs != null) rs.close();
+        }
+    }
+    
+    // lấy ra toàn bộ material
+    public List<StrapMaterials> getAllStrapMaterials() throws SQLException {
+        String sql = "SELECT * FROM StrapMaterials";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<StrapMaterials> list = new ArrayList();
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();    
+            while(rs.next()) {
+                StrapMaterials sM = new StrapMaterials(rs.getInt("strap_id")
+                ,rs.getString("strap_name"));
+                list.add(sM);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            if(ps != null) ps.close();
+            if(rs != null) rs.close();
+        }
+        return list;
+    }
+    
+    // lấy toàn bộ movementtypes
+     public List<MovementTypes> getAllMovementTypes() throws SQLException {
+        String sql = "SELECT * FROM MovementTypes";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<MovementTypes> list = new ArrayList();
+        try {
+            ps = connection.prepareStatement(sql);
+            rs = ps.executeQuery();    
+            while(rs.next()) {
+                MovementTypes sM = new MovementTypes(rs.getInt("movement_id")
+                ,rs.getString("movement_name"));
+                list.add(sM);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            if(ps != null) ps.close();
+            if(rs != null) rs.close();
+        }
+        return list;
+    }
+     
+     // THÊM SẢN PHẨM
+     // chèn 1 sản phẩm mới vào csdl
+     public void insertAProductByAdmin(String name,int brand, double price,int movement, int strap,String images,String description, int quantity, String new_product, String gender,String username) throws SQLException {
+         String sql = "INSERT INTO Watches VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+         PreparedStatement ps = null;
+         try {
+             int index = 1;
+             ps = connection.prepareStatement(sql);
+             ps.setString(index++, name);
+             ps.setDouble(index++, price);
+             ps.setInt(index++, brand);
+             ps.setInt(index++,movement);
+             ps.setInt(index++, strap);
+             ps.setString(index++, images);
+             ps.setString(index++, description);
+             ps.setInt(index++, quantity);
+             ps.setString(index++, new_product);
+             ps.setString(index++, gender);
+             ps.setString(index++, username);
+             ps.executeUpdate();
+         } catch (Exception e) {
+             System.out.println(e);
+         } finally {
+             if(ps != null) ps.close();
+         }
+     }
 }

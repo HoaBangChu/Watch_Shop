@@ -58,29 +58,7 @@ public class DeleteProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String paraBtn = request.getParameter("delete");
-        String refer = request.getHeader("referer");
-        String productName = request.getParameter("name_product");
-        HttpSession session = request.getSession();
-        User user = (User)session.getAttribute("account");
-        if(user == null){
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        } 
-        if(paraBtn != null && paraBtn.equals("cancel")){
-            response.sendRedirect(refer);
-            return;
-        }
-        if(paraBtn != null && paraBtn.equals("agree")) {
-            // nếu muốn xóa thì ném thằng tên sản phẩm muốn xóa kèm user qua bên DAO hỗ trợ
-            DAO_Product dao = new DAO_Product();
-            try {
-             dao.deleteProductByAdmin(productName, user.getUsername());
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-        response.sendRedirect(request.getContextPath() + "/Admin_Shop/admin_product.jsp");
+        
     } 
 
     /** 
@@ -93,7 +71,26 @@ public class DeleteProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String paraBtn = request.getParameter("delete");
+        String refer = request.getHeader("referer");
+        String productId = request.getParameter("id_product");
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("account");
+        if(user == null){
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
+        if(paraBtn != null && paraBtn.equals("agree")) {
+            // nếu muốn xóa thì ném thằng tên sản phẩm muốn xóa kèm user qua bên DAO hỗ trợ
+            DAO_Product dao = new DAO_Product();
+            try {
+                int id = Integer.parseInt(productId);
+             dao.deleteProductByAdmin(id, user.getUsername());
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+        response.sendRedirect(refer);
     }
 
     /** 

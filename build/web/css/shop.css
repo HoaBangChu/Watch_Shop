@@ -52,8 +52,49 @@
     border-radius: 5px;
     background: green;
 }
+.add_product a:first-of-type{
+    background: orange;
+}
 .add_product{
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     text-align: end;
-    margin: 1% 1% 0 0;
+    margin: 1% 1% 0 1%;
+}
+.addProduct {
+    width: 60%;
+    margin: 3% 0 3% 0;
+    text-align: center;
+}
+.addProduct label {
+    display: inline-block;
+    width: 15%;
+    height: 25px;
+    color: white;
+    font-size: 1.2rem;
+    text-align: start;
+}
+.addProduct input{
+    width: 60%;
+    height: 25px;
+}
+.addProduct select{
+    width: 61%;
+    height: 30px;
+}
+.addProduct div{
+    margin: 2% 0;
+}
+.addProduct button{
+    color :white;
+    background: green;
+    width: 15%;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+}
+#btn{
+    text-align: center;
+    margin-left: 14%;
 }
