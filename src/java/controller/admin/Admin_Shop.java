@@ -67,7 +67,22 @@ public class Admin_Shop extends HttpServlet {
         DAO_Product dao = new DAO_Product();
         try {
             List<Watch> list = dao.getProductAdmin(user.getUsername());
-            request.setAttribute("product_admin", list);
+            // phân trang
+            int page, numberPerPage = 10;
+            String xPage = request.getParameter("page");
+            if(xPage == null) {
+                page = 1;
+            }else{
+                page = Integer.parseInt(xPage);
+            }
+            int size = list.size(); // lấy size
+            int numberOfPage = (int)Math.ceil((double)size/numberPerPage);
+            int start = (page - 1) * numberPerPage;
+            int end = Math.min(page*numberPerPage,size);
+            List<Watch> listPaging = dao.pagingProduct(list, start, end);
+            // 
+            request.setAttribute("product_admin", listPaging);
+            request.setAttribute("numberPage", numberOfPage);
         } catch (Exception e) {
             System.out.println(e);
         }finally{

@@ -61,7 +61,23 @@ public class Shop extends HttpServlet {
         DAO_Product dao = new DAO_Product();
         try {
             List<Watch> watch_list = dao.getAllWatch();
-            request.setAttribute("watch_list", watch_list); 
+            // tiến hành phân trang
+            int page, numberPerPage = 10;
+            String xPage = request.getParameter("page");
+            if(xPage == null) {
+                page = 1;
+            }else{
+                page = Integer.parseInt(xPage);
+            }
+            int size = watch_list.size(); // lấy size
+            int numberOfPages = (int)Math.ceil((double)size/numberPerPage);
+            int start = (page - 1) * numberPerPage;
+            int end = Math.min(page * numberPerPage, size);
+            List<Watch> listPaging = dao.pagingProduct(watch_list, start, end);
+            //
+            request.setAttribute("watch_list", listPaging);
+            request.setAttribute("numberPage", numberOfPages);
+            request.setAttribute("page", page);
         } catch (Exception e) {
             System.out.println(e);
         }finally{

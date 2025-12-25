@@ -18,7 +18,7 @@
             <p>Liên hệ: 0123456789&nbsp;&nbsp;•&nbsp;&nbsp;</p>
             <p>   Đảm bảo chất lượng&nbsp;&nbsp;•&nbsp;&nbsp;</p>
             <p>   Giao hàng nhanh chóng&nbsp;&nbsp;•&nbsp;&nbsp;</p>
-            <img src="./images/delivery.webp" alt="alt"/>
+            <img src="${pageContext.request.contextPath}/images/delivery_oto.webp" alt="alt"/>
         </div>
     </body>
 </html>

@@ -94,7 +94,6 @@
                         <h3 style="color: red">${sessionScope.add_error}</h3>
                         <c:remove var="add_error" scope="session"/>
                     </c:if>
-
                 </div>
             </div>  
         </div>

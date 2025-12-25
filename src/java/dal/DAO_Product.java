@@ -406,4 +406,8 @@ public class DAO_Product extends DBContext {
              if(ps != null) ps.close();
          }
      }
+     // lấy list phần trang
+     public List<Watch> pagingProduct(List<Watch> list, int start, int end){
+         return list.subList(start, end);
+     }
 }

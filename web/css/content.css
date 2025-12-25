@@ -220,3 +220,16 @@
 #overlay.active {
     visibility: visible;
 }
+/*// pagin*/
+.paging a{
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid white;
+    margin :0 5px;
+}
+.paging{
+    width: 100%;
+    text-align: center;
+}

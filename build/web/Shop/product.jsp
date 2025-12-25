@@ -34,6 +34,12 @@
                 </div>
             </c:forEach>
              </c:if>
+                 <div class="paging">
+                 <c:set value="${requestScope.page}" var="page"/>
+                 <c:forEach begin="1" end="${requestScope.numberPage}" var="i">
+                     <a href="${pageContext.request.contextPath}/shop?page=${i}">${i}</a>
+                 </c:forEach>
+             </div> 
         </div>
             
     </body>

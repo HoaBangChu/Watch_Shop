@@ -82,7 +82,13 @@
                     <button type="button" name="delete" value="cancel" onclick="closeDelete()">Hủy</button>
                 </form>
             </div>
-            <!--.-->
+            <!--paging-->
+            <div class="paging">
+                 <c:set value="${requestScope.page}" var="page"/>
+                 <c:forEach begin="1" end="${requestScope.numberPage}" var="i">
+                     <a href="${pageContext.request.contextPath}/adminshop?page=${i}">${i}</a>
+                 </c:forEach>
+             </div> 
         </div>
         <script>
             let popD = document.querySelector("#popDelete");

@@ -26,7 +26,7 @@
                 <jsp:include page="./product.jsp"/>
             </div>
                 <jsp:include page="../Content_Home/delivery.jsp"/>
-            <!--.footer-->
+            <!--footer-->
             <div class="footer">
                <jsp:include page="../Home/footer.jsp"/>
             </div>
